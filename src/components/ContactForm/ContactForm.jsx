@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectItems } from '../../redux/selectors';
-import { addContact } from '../../redux/contactsOperations';
+import { selectItems } from '../../redux/contacts/selectors';
+import { addContact } from '../../redux/contacts/contactsOperations';
 import { toast } from 'react-toastify';
 import { Form, FormLabel, FormInput, FormBtn } from './ContactForm.styled';
 
