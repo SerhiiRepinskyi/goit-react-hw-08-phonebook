@@ -4,6 +4,9 @@ import { Notify } from 'notiflix';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
+// Обєкт з методом set - записує токен до заголовку Authorization дефолтного хедера в запиті axios
+// Методо clear - очищає заголовок Authorization
+// common - всі запити (post, get ...)
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -18,7 +21,8 @@ const token = {
  * body: { name, email, password }
  * Посля успішної реєстрації добаємо токен в HTTP-заголовок
  */
-// Запит відправляє дані credentials, які містять інформацію про користувача для реєстрації (при submit)
+// Запит відправляє дані об'єкт credentials, який містять інформацію про користувача для реєстрації (при submit)
+// thunkAPI - об'єкт із службовою інформацією
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
@@ -71,6 +75,15 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
+/*
+ * GET @ /users/current
+ * headers:
+ *    Authorization: Bearer token
+ *
+ * 1. Забираемо токен зі стейта через getState()
+ * 2. Якщо токена нема, виходимо не виконуючи ніяких операцій
+ * 3. Якщо токен є, додаємо его в HTTP-заголовок і виконуємо операцію
+ */
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
@@ -81,8 +94,8 @@ export const refreshUser = createAsyncThunk(
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
+    token.set(persistedToken);
     try {
-      token.set(persistedToken);
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
@@ -90,3 +103,11 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+const operations = {
+  register,
+  logIn,
+  logOut,
+  refreshUser,
+};
+export default operations;
