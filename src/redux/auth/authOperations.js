@@ -104,10 +104,10 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
-const operations = {
-  register,
-  logIn,
-  logOut,
-  refreshUser,
-};
-export default operations;
+// const operations = {
+//   register,
+//   logIn,
+//   logOut,
+//   refreshUser,
+// };
+// export default operations;

@@ -36,13 +36,10 @@ const ContactForm = () => {
     if (isAdded) {
       return toast.error(`${name} is already in contacts.`);
     }
+
+    const newContact = { name: name, number: phone }; // Cтворення нового контакту
     // Відправлення action addContact
-    dispatch(
-      addContact({
-        name,
-        phone,
-      })
-    );
+    dispatch(addContact(newContact));
     resetForm(); // Очистка форми
   };
 
