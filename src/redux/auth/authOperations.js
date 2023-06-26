@@ -4,12 +4,13 @@ import { Notify } from 'notiflix';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
-const setAuthToken = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
-
-const clearAuthToken = () => {
-  axios.defaults.headers.common.Authorization = '';
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  clear() {
+    axios.defaults.headers.common.Authorization = '';
+  },
 };
 
 /*
@@ -23,23 +24,28 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post('/users/signup', credentials);
-      setAuthToken(data.token);
-      Notify.success('Registrated succesfully!');
+      token.set(data.token);
+      Notify.success('Registered successfully!');
       return data;
     } catch (error) {
-      Notify.failure('Registration failed!');
+      Notify.failure('Registered failed!');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
+/*
+ * POST @ /users/login
+ * body: { email, password }
+ * Після успішного логіна добаємо токен в HTTP-заголовок
+ */
 export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post('/users/login', credentials);
-      setAuthToken(data.token);
-      Notify.success('Login sucess!');
+      token.set(data.token);
+      Notify.success('Login is successful!');
       return data;
     } catch (error) {
       Notify.failure('Login failed!');
@@ -48,14 +54,19 @@ export const logIn = createAsyncThunk(
   }
 );
 
+/*
+ * POST @ /users/logout
+ * headers: Authorization: Bearer token
+ * Посля успішного логаута, видаляємо токен з HTTP-заголовка
+ */
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/logout');
-    clearAuthToken();
-    Notify.info('Logout');
+    token.clear();
+    Notify.info('Log Out');
     return data;
   } catch (error) {
-    Notify.failure('Something go wrong with your logout!');
+    Notify.failure('Something went wrong with your logout!');
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -71,7 +82,7 @@ export const refreshUser = createAsyncThunk(
     }
 
     try {
-      setAuthToken(persistedToken);
+      token.set(persistedToken);
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {

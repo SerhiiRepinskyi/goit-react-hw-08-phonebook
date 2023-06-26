@@ -1,16 +1,21 @@
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import AppBar from '../AppBar';
+import { Header } from './SharedLayout.styled';
 
 const SharedLayout = () => {
   return (
     <>
-      <AppBar />
+      <Header>
+        <AppBar />
+      </Header>
 
-      {/* Suspense - рендеринг дочірніх компонентів лише за потреби*/}
-      <Suspense fallback={<div>Loading...</div>}>
-        <Outlet />
-      </Suspense>
+      <main>
+        {/* Suspense - рендеринг дочірніх компонентів лише за потреби*/}
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
+      </main>
     </>
   );
 };

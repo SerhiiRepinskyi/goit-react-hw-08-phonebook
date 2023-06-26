@@ -8,7 +8,8 @@ export const Header = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  box-shadow: 0px 25px 25px -30px rgba(32, 32, 135, 0.7);
+  font-size: 20px;
+  // font-weight: 500;
 
-  background-color: orange;
+  box-shadow: 0px 25px 25px -30px rgba(32, 32, 135, 0.7);
 `;

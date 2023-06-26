@@ -1,38 +1,59 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/authOperations';
+import { Form, Label } from './LoginForm.styled';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleChange = ({ target: { name, value } }) => {
+    switch (name) {
+      case 'email':
+        return setEmail(value);
+      case 'password':
+        return setPassword(value);
+      default:
+        return;
+    }
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
-    const form = e.currentTarget;
-    dispatch(
-      logIn({
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    );
-    form.reset();
+    dispatch(logIn({ email, password }));
+    setEmail('');
+    setPassword('');
   };
 
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
-      <div>
-        <label>
-          Email
-          <input type="email" name="email" />
-        </label>
-        <label>
-          Password
-          <input type="password" name="password" autoComplete="off" />
-        </label>
-        <button type="submit">Log in</button>
-        {/* <a className={css.link} href="#">
-          Don't have an account? Sign Up
-        </a> */}
-      </div>
-    </form>
+    <div>
+      <h1>Log In</h1>
+
+      <Form onSubmit={handleSubmit} autoComplete="off">
+        <Label>
+          E-mail:
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+          />
+        </Label>
+
+        <Label>
+          Password:
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
+        </Label>
+
+        <button type="submit">Log In</button>
+      </Form>
+    </div>
   );
 };
 

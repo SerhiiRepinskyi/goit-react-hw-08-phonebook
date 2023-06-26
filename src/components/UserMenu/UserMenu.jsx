@@ -1,20 +1,24 @@
-// import { useDispatch } from 'react-redux';
-// import { logOut } from '../../redux/auth/authOperations';
-// import { useAuth } from '../hooks/useAuth';
+import { useSelector, useDispatch } from 'react-redux';
+import { logOut } from '../../redux/auth/authOperations';
+import { selectUser } from '../../redux/auth/authSelectors';
+import defaultAvatar from './default-avatar.png';
+import { Container } from './UserMenu.styled';
 
 const UserMenu = () => {
-  //   const dispatch = useDispatch();
-  //   const { user } = useAuth();
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const avatar = defaultAvatar;
 
-  //   const handleLogOut = () => dispatch(logOut());
+  // const handleLogOut = () => dispatch(logOut());
 
   return (
-    <div>
-      {/* <p>Welcome, {user.name}</p> */}
-      <p>Welcome</p>
-      {/* <button type="button" onClick={handleLogOut}> */}
-      <button type="button">Logout</button>
-    </div>
+    <Container>
+      <img src={avatar} alt="avatar" width="32" />
+      <p>Welcome, {user.name}!</p>
+      <button type="button" onClick={() => dispatch(logOut())}>
+        Log Out
+      </button>
+    </Container>
   );
 };
 
