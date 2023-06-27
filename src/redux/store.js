@@ -18,7 +18,6 @@ const authPersistConfig = {
   key: 'auth', // Назва ключа в LocalStorage
   storage,
   whitelist: ['token'],
-  version: 1,
 };
 
 const persistedReducer = persistReducer(authPersistConfig, authReducer);

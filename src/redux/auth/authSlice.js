@@ -9,6 +9,10 @@ const authInitialState = {
   error: null,
 };
 
+const handlePending = state => {
+  state.error = null;
+};
+
 const handleFulfilled = (state, action) => {
   state.user = action.payload.user;
   state.token = action.payload.token;
@@ -24,27 +28,35 @@ export const authSlice = createSlice({
   initialState: authInitialState,
   extraReducers: bilder => {
     bilder
-      .addCase(register.pending, (state, action) => state)
+      .addCase(register.pending, handlePending)
       .addCase(register.fulfilled, handleFulfilled)
       .addCase(register.rejected, handleRejected)
 
+      .addCase(logIn.pending, handlePending)
       .addCase(logIn.fulfilled, handleFulfilled)
-      .addCase(logIn.rejected, (state, action) => {
-        state.error = action.payload;
-      })
+      .addCase(logIn.rejected, handleRejected)
 
+      .addCase(logOut.pending, handlePending)
       .addCase(logOut.fulfilled, state => {
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+        state.isRefreshing = false;
       })
       .addCase(logOut.rejected, handleRejected)
 
+      .addCase(refreshUser.pending, state => {
+        state.isRefreshing = true;
+      })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
-      .addCase(refreshUser.rejected, handleRejected);
+      .addCase(refreshUser.rejected, (state, action) => {
+        state.error = action.payload;
+        state.isRefreshing = false;
+      });
   },
 });
 

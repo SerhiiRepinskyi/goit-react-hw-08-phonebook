@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { logOut } from '../auth/authOperations';
 
 const filterSlice = createSlice({
   name: 'filter',
@@ -9,6 +10,12 @@ const filterSlice = createSlice({
       // Значення фільтра = пошуковий запит
       return state;
     },
+  },
+  // Очистка пошукового фільтру після logOut
+  extraReducers: builder => {
+    builder.addCase(logOut.fulfilled, state => {
+      return (state = '');
+    });
   },
 });
 

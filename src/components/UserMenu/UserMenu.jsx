@@ -16,7 +16,7 @@ const UserMenu = () => {
       <img src={avatar} alt="avatar" width="32" />
       <p>Welcome, {user.name}!</p>
       <button type="button" onClick={() => dispatch(logOut())}>
-        Log Out
+        Logout
       </button>
     </Container>
   );
