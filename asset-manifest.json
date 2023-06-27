@@ -1,13 +1,24 @@
 {
   "files": {
-    "main.css": "/goit-react-hw-08-phonebook/static/css/main.29db3733.css",
-    "main.js": "/goit-react-hw-08-phonebook/static/js/main.f5756538.js",
+    "main.css": "/goit-react-hw-08-phonebook/static/css/main.2e1b5f27.css",
+    "main.js": "/goit-react-hw-08-phonebook/static/js/main.dadf7534.js",
+    "static/js/349.778301a9.chunk.js": "/goit-react-hw-08-phonebook/static/js/349.778301a9.chunk.js",
+    "static/js/11.8ed12f5f.chunk.js": "/goit-react-hw-08-phonebook/static/js/11.8ed12f5f.chunk.js",
+    "static/js/767.992192d7.chunk.js": "/goit-react-hw-08-phonebook/static/js/767.992192d7.chunk.js",
+    "static/js/651.1342a189.chunk.js": "/goit-react-hw-08-phonebook/static/js/651.1342a189.chunk.js",
+    "static/css/544.7c3dd9d6.chunk.css": "/goit-react-hw-08-phonebook/static/css/544.7c3dd9d6.chunk.css",
+    "static/media/default-avatar.png": "/goit-react-hw-08-phonebook/static/media/default-avatar.e44fc4e22a4ce55fbe43.png",
     "index.html": "/goit-react-hw-08-phonebook/index.html",
-    "main.29db3733.css.map": "/goit-react-hw-08-phonebook/static/css/main.29db3733.css.map",
-    "main.f5756538.js.map": "/goit-react-hw-08-phonebook/static/js/main.f5756538.js.map"
+    "main.2e1b5f27.css.map": "/goit-react-hw-08-phonebook/static/css/main.2e1b5f27.css.map",
+    "main.dadf7534.js.map": "/goit-react-hw-08-phonebook/static/js/main.dadf7534.js.map",
+    "349.778301a9.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/349.778301a9.chunk.js.map",
+    "11.8ed12f5f.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/11.8ed12f5f.chunk.js.map",
+    "767.992192d7.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/767.992192d7.chunk.js.map",
+    "651.1342a189.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/651.1342a189.chunk.js.map",
+    "544.7c3dd9d6.chunk.css.map": "/goit-react-hw-08-phonebook/static/css/544.7c3dd9d6.chunk.css.map"
   },
   "entrypoints": [
-    "static/css/main.29db3733.css",
-    "static/js/main.f5756538.js"
+    "static/css/main.2e1b5f27.css",
+    "static/js/main.dadf7534.js"
   ]
 }
