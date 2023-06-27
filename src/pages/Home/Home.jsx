@@ -1,7 +1,9 @@
+import { Tytle } from './Home.styled';
+
 const Home = () => {
   return (
     <section>
-      <h1>Welcome to PhoneBook App</h1>
+      <Tytle>Welcome to PhoneBook App</Tytle>
     </section>
   );
 };

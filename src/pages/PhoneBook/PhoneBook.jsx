@@ -28,7 +28,7 @@ const Contacts = () => {
 
   return (
     <Container>
-      <Title>Phonebook</Title>
+      <Title>PhoneBook</Title>
       <ContactForm />
 
       <Subtitle>Contacts</Subtitle>

@@ -51,7 +51,7 @@ const ContactForm = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <FormLabel>
-        Name
+        Name:
         <FormInput
           type="text"
           name="name"
@@ -64,7 +64,7 @@ const ContactForm = () => {
       </FormLabel>
 
       <FormLabel>
-        Number
+        Number:
         <FormInput
           type="tel"
           name="number"

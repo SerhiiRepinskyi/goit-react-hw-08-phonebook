@@ -9,7 +9,7 @@ export const Header = styled.header`
   justify-content: space-between;
 
   font-size: 20px;
-  // font-weight: 500;
+  font-weight: 700;
 
   box-shadow: 0px 25px 25px -30px rgba(32, 32, 135, 0.7);
 `;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Nav = styled.nav`
   display: flex;
   gap: 35px;
-  
+
   & a {
     text-decoration: none;
   }

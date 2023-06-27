@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/authOperations';
-import { Form, Label } from './LoginForm.styled';
+import { Container,
+  Tytle,
+  Form,
+  FormLabel,
+  FormInput,
+  FormBtn, } from './LoginForm.styled';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -27,33 +32,33 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <h1>Log In</h1>
+    <Container>
+      <Tytle>Log In</Tytle>
 
       <Form onSubmit={handleSubmit} autoComplete="off">
-        <Label>
+        <FormLabel>
           E-mail:
-          <input
+          <FormInput
             type="email"
             name="email"
             value={email}
             onChange={handleChange}
           />
-        </Label>
+        </FormLabel>
 
-        <Label>
+        <FormLabel>
           Password:
-          <input
+          <FormInput
             type="password"
             name="password"
             value={password}
             onChange={handleChange}
           />
-        </Label>
+        </FormLabel>
 
-        <button type="submit">Log In</button>
+        <FormBtn type="submit">Log In</FormBtn>
       </Form>
-    </div>
+    </Container>
   );
 };
 

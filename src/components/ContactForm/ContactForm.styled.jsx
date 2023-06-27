@@ -35,7 +35,7 @@ export const FormBtn = styled.button`
   margin-top: 6px;
 
   width: 100%;
-  max-width: 180px;
+  max-width: 140px;
   height: 30px;
   padding: 2px 5px;
 
