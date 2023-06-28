@@ -14,9 +14,9 @@ import {
   AmountContacts,
   ContactsNum,
   Message,
-} from './PhoneBook.styled';
+} from './ContactsPage.styled';
 
-const Contacts = () => {
+const ContactsPage = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectItems); // Отримуємо всі контакти зі стейта Store
   const error = useSelector(selectError);
@@ -54,4 +54,4 @@ const Contacts = () => {
   );
 };
 
-export default Contacts;
+export default ContactsPage;

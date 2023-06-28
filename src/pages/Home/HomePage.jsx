@@ -1,6 +1,6 @@
-import { Tytle } from './Home.styled';
+import { Tytle } from './HomePage.styled';
 
-const Home = () => {
+const HomePage = () => {
   return (
     <section>
       <Tytle>Welcome to PhoneBook App</Tytle>
@@ -8,4 +8,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

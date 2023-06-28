@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/authOperations';
 import {
@@ -12,29 +11,18 @@ import {
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case 'name':
-        return setName(value);
-      case 'email':
-        return setEmail(value);
-      case 'password':
-        return setPassword(value);
-      default:
-        return;
-    }
-  };
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(register({ name, email, password }));
-    setName('');
-    setEmail('');
-    setPassword('');
+    const Form = e.currentTarget;
+    dispatch(
+      register({
+        name: Form.elements.name.value,
+        email: Form.elements.email.value,
+        password: Form.elements.password.value,
+      })
+    );
+    Form.reset();
   };
 
   return (
@@ -43,33 +31,18 @@ const RegisterForm = () => {
 
       <Form onSubmit={handleSubmit} autoComplete="off">
         <FormLabel>
-          Name:
-          <FormInput
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleChange}
-          />
+          Username:
+          <FormInput type="text" name="name" />
         </FormLabel>
 
         <FormLabel>
           E-mail:
-          <FormInput
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
+          <FormInput type="email" name="email" />
         </FormLabel>
 
         <FormLabel>
           Password:
-          <FormInput
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
+          <FormInput type="password" name="password" />
         </FormLabel>
 
         <FormBtn type="submit">Register</FormBtn>

@@ -1,68 +1,65 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
-import Container from '../components/Container';
 import SharedLayout from '../components/SharedLayout';
+import { useAuth } from '../hooks/useAuth';
 import { refreshUser } from '../redux/auth/authOperations';
-import { selectIsRefreshing } from '../redux/auth/authSelectors';
 import PrivateRoute from './PrivateRoute';
 import RestrictedRoute from './RestrictedRoute';
 
 // Поділ коду - маршрут/компонент завантажиться лише за потреби
-const Home = lazy(() => import('../pages/Home'));
-const Register = lazy(() => import('../pages/Register'));
-const Login = lazy(() => import('../pages/Login'));
-const Contacts = lazy(() => import('../pages/PhoneBook/PhoneBook'));
+const HomePage = lazy(() => import('pages/Home'));
+const RegisterPage = lazy(() => import('pages/Register'));
+const LoginPage = lazy(() => import('pages/Login'));
+const ContactsPage = lazy(() => import('pages/Contacts'));
 
 export default function App() {
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsRefreshing);
+  const { isRefreshing } = useAuth();
 
   //  Запуск refreshUser з redux/auth/authOperations
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  // Якщо не обновлюється токен (!isRefreshing) - рендеримо компоненти
-  return (
-    <Container>
-      {!isRefreshing && (
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Home />} />
+  // Якщо не рефрешимо (!isRefreshing) - рендеримо розмітку
+  return isRefreshing ? (
+    'Fetching user data...'
+  ) : (
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<HomePage />} />
 
-            {/* <Route path="/register" element={<Register />} /> */}
-            <Route
-              path="/register"
-              element={
-                <RestrictedRoute
-                  redirectTo="/Contacts"
-                  component={<Register />}
-                />
-              }
+        {/* <Route path="/register" element={<RegisterPage />} /> */}
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute
+              redirectTo="/contacts"
+              component={<RegisterPage />}
             />
+          }
+        />
 
-            {/* <Route path="/login" element={<Login />} /> */}
-            <Route
-              path="/login"
-              element={
-                <RestrictedRoute redirectTo="/Contacts" component={<Login />} />
-              }
-            />
+        {/* <Route path="/login" element={<LoginPage />} /> */}
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
+          }
+        />
 
-            {/* <Route path="/contacts" element={<Contacts />} /> */}
-            <Route
-              path="/contacts"
-              element={
-                <PrivateRoute redirectTo="/login" component={<Contacts />} />
-              }
-            />
+        {/* <Route path="/contacts" element={<ContactsPage />} /> */}
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+          }
+        />
 
-            <Route path="*" element={<Navigate to="/" />} />
-          </Route>
-        </Routes>
-      )}
-    </Container>
+        <Route path="*" element={<Navigate to="/" />} />
+      </Route>
+    </Routes>
   );
 }
