@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from 'hooks';
 import { logOut } from '../../redux/auth/authOperations';
 import defaultAvatar from './default-avatar.png';
 import { UserContainer, User, Btn } from './UserMenu.styled';

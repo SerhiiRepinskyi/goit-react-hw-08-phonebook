@@ -1,13 +1,16 @@
 import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from '../redux/auth/authSelectors';
+import { useAuth } from 'hooks';
 
-const RestrictedRoute = ({ component, redirectTo = '/' }) => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+/**
+ * - If the route is restricted and the user is logged in, render a <Navigate> to redirectTo
+ * - Otherwise render the component
+ */
 
-  // Запобігаємо редіректу на логін поки не завантажиться токен
-  // Якщо залогінений, то рендеримо компонент
+// RestrictedRoute - обмежений маршрут
+export const RestrictedRoute = ({ component, redirectTo = '/' }) => {
+  const { isLoggedIn } = useAuth();
+
+  // Запобігаємо переходу на редірект за умовою
+  // Якщо користувач залогінений, то рендеримо component
   return isLoggedIn ? <Navigate to={redirectTo} /> : component;
 };
-
-export default RestrictedRoute;

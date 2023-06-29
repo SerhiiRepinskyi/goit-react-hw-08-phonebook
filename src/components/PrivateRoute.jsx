@@ -1,17 +1,18 @@
 import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from '../redux/auth/authSelectors';
-import { selectIsRefreshing } from '../redux/auth/authSelectors';
+import { useAuth } from 'hooks';
 
-const PrivateRoute = ({ component: Component, redirectTo: addres }) => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isRefreshing = useSelector(selectIsRefreshing);
+/**
+ * - If the route is private and the user is logged in, render the component
+ * - Otherwise render <Navigate> to redirectTo
+ */
 
-  // Якщо не залогінений і не завантажується токен, то Navigate на addres
-  const shouldRedirect = !isLoggedIn && !isRefreshing;
+export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
+  const { isLoggedIn, isRefreshing } = useAuth();
 
+  const shouldRedirect = !isRefreshing && !isLoggedIn;
+
+  // Якщо не рефрешиться (завантажується токен з локалстораж) і не залогінений,
+  //  то Navigate на redirectTo (по дефолту - '/')
   // Якщо залогінений, то рендеримо компонент
-  return shouldRedirect ? <Navigate to={addres} /> : Component;
+  return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
 };
-
-export default PrivateRoute;

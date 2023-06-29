@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
 import SharedLayout from '../components/SharedLayout';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from 'hooks';
 import { refreshUser } from '../redux/auth/authOperations';
-import PrivateRoute from './PrivateRoute';
-import RestrictedRoute from './RestrictedRoute';
+import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRoute';
 
 // Поділ коду - маршрут/компонент завантажиться лише за потреби
 const HomePage = lazy(() => import('pages/Home'));
@@ -36,8 +36,8 @@ export default function App() {
           path="/register"
           element={
             <RestrictedRoute
-              redirectTo="/contacts"
               component={<RegisterPage />}
+              redirectTo="/contacts"
             />
           }
         />
@@ -46,7 +46,7 @@ export default function App() {
         <Route
           path="/login"
           element={
-            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
+            <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
           }
         />
 
@@ -54,7 +54,7 @@ export default function App() {
         <Route
           path="/contacts"
           element={
-            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
+            <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
           }
         />
 
