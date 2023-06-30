@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[750],{5750:function(e,t,n){n.r(t),n.d(t,{default:function(){return l}});var o,r=n(6856),c=n(168),a=n(6444).ZP.h1(o||(o=(0,c.Z)(["\n  margin-top: 60px;\n  text-align: center;\n"]))),i=n(3329),l=function(){return(0,i.jsxs)("section",{children:[(0,i.jsx)(a,{children:"Welcome to PhoneBook App"}),(0,i.jsx)(r.e5n,{style:{display:"block",width:"160px",height:"auto",margin:"0 auto",marginTop:"30px"},color:"#c8e9e3"})]})}}}]);
+//# sourceMappingURL=750.513b99f1.chunk.js.map
