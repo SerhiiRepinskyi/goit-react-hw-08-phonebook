@@ -1,8 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/authOperations';
+import { Link } from 'react-router-dom';
+import { MdAppRegistration} from 'react-icons/md';
 import {
-  Container,
   Tytle,
+  Container,
   Form,
   FormLabel,
   FormInput,
@@ -26,28 +28,37 @@ const RegisterForm = () => {
   };
 
   return (
-    <Container>
+    <>
       <Tytle>Register new user</Tytle>
 
-      <Form onSubmit={handleSubmit} autoComplete="off">
-        <FormLabel>
-          Username:
-          <FormInput type="text" name="name" />
-        </FormLabel>
+      <Container>
+        <Form onSubmit={handleSubmit} autoComplete="off">
+          <FormLabel>
+            Username:
+            <FormInput type="text" name="name" />
+          </FormLabel>
 
-        <FormLabel>
-          E-mail:
-          <FormInput type="email" name="email" />
-        </FormLabel>
+          <FormLabel>
+            E-mail:
+            <FormInput type="email" name="email" />
+          </FormLabel>
 
-        <FormLabel>
-          Password:
-          <FormInput type="password" name="password" />
-        </FormLabel>
+          <FormLabel>
+            Password:
+            <FormInput type="password" name="password" />
+          </FormLabel>
 
-        <FormBtn type="submit">Register</FormBtn>
-      </Form>
-    </Container>
+          <FormBtn type="submit">
+            <MdAppRegistration />
+            Register
+          </FormBtn>
+        </Form>
+
+        <p>
+          <Link to="/login">Log In</Link> if you already have an account.
+        </p>
+      </Container>
+    </>
   );
 };
 

@@ -30,7 +30,11 @@ export const FormLabel = styled.label`
 export const FormBtn = styled.button`
   cursor: pointer;
 
-  display: block;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+
   margin: 0 auto;
   margin-top: 6px;
 

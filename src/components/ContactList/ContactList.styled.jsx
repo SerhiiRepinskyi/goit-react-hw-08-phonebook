@@ -1,35 +1,51 @@
 import styled from 'styled-components';
 
 export const ContactsList = styled.ul`
-  background-color: #f4efef;
-  padding: 32px;
+  max-width: 100%;
+  width: 600px;
 
   display: flex;
+  gap: 10px;
   flex-direction: column;
-  gap: 16px;
-  max-width: 100%;
-  width: 400px;
 `;
 
 export const ContactItem = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  background-color: #f4efef;
+  padding: 2px 16px;
+
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.01);
+`;
+
+export const Span = styled.span`
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const Btn = styled.button`
   cursor: pointer;
-  display: block;
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
 
   width: 100%;
-  max-width: 65px;
+  max-width: 75px;
   height: 26px;
-  padding: 2px 5px;
+  padding: 2px 8px;
 
   color: #fff;
   background-color: #62ada0;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
 
   border: none;
   border-radius: 6px;

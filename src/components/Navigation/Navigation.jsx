@@ -1,14 +1,22 @@
-import { NavLink } from 'react-router-dom';
 import { useAuth } from 'hooks';
-import { Nav } from './Navigation.styled';
+import { MdHome, MdContactPhone } from 'react-icons/md';
+import { Nav, NavLinkStyled } from './Navigation.styled';
 
 const Navigation = () => {
   const { isLoggedIn } = useAuth();
 
   return (
     <Nav>
-      <NavLink to="/">Home</NavLink>
-      {isLoggedIn && <NavLink to="/contacts">PhoneBook</NavLink>}
+      <NavLinkStyled to="/">
+        <MdHome /> Home
+      </NavLinkStyled>
+
+      {isLoggedIn && (
+        <NavLinkStyled to="/contacts">
+          <MdContactPhone />
+          PhoneBook
+        </NavLinkStyled>
+      )}
     </Nav>
   );
 };

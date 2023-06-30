@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilteredContacts } from '../../redux/contacts/selectors';
 import { deleteContact } from '../../redux/contacts/contactsOperations';
-import { ContactsList, ContactItem, Btn } from './ContactList.styled';
+import { FaUser, FaPhone } from 'react-icons/fa';
+import { AiFillDelete } from 'react-icons/ai';
+import { ContactsList, ContactItem, Span, Btn } from './ContactList.styled';
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -15,9 +17,14 @@ const ContactList = () => {
     <ContactsList>
       {filteredContacts.map(({ id, name, number }) => (
         <ContactItem key={id}>
-          <span>{name}: </span>
-          <span>{number}</span>
+          <Span>
+            <FaUser color="#c8e9e3" /> {name}:
+          </Span>
+          <Span>
+            <FaPhone color="#c8e9e3" /> {number}
+          </Span>
           <Btn type="button" onClick={() => handleDeleteContact(id)}>
+            <AiFillDelete />
             Delete
           </Btn>
         </ContactItem>

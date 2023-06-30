@@ -1,11 +1,16 @@
-import { NavLink } from 'react-router-dom';
-import { Container } from './AuthNav.styled';
+import { MdAppRegistration, MdOutlineLogin } from 'react-icons/md';
+import { Container, NavLinkStyled } from './AuthNav.styled';
 
 const AuthNav = () => {
   return (
     <Container>
-      <NavLink to="/register">Register</NavLink>
-      <NavLink to="/login">Log In</NavLink>
+      <NavLinkStyled to="/register">
+        <MdAppRegistration /> Register
+      </NavLinkStyled>
+      <NavLinkStyled to="/login">
+        <MdOutlineLogin />
+        Log In
+      </NavLinkStyled>
     </Container>
   );
 };

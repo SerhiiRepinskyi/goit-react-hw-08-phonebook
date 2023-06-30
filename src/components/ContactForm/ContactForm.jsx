@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectItems } from '../../redux/contacts/selectors';
 import { addContact } from '../../redux/contacts/contactsOperations';
 import { toast } from 'react-toastify';
+import { HiOutlineUserAdd } from 'react-icons/hi';
 import { Form, FormLabel, FormInput, FormBtn } from './ContactForm.styled';
 
 const ContactForm = () => {
@@ -76,7 +77,10 @@ const ContactForm = () => {
         />
       </FormLabel>
 
-      <FormBtn type="submit">Add contact</FormBtn>
+      <FormBtn type="submit">
+        <HiOutlineUserAdd />
+        Add contact
+      </FormBtn>
     </Form>
   );
 };

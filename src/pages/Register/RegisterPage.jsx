@@ -1,10 +1,11 @@
 import RegisterForm from '../../components/RegisterForm';
+import { Section } from './RegisterPage.styled';
 
 const RegisterPage = () => {
   return (
-    <section>
+    <Section>
       <RegisterForm />
-    </section>
+    </Section>
   );
 };
 

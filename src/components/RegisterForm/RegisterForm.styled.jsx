@@ -1,32 +1,32 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 16px;
-`;
-
 export const Tytle = styled.h1`
   text-align: center;
   margin-top: 40px;
   margin-bottom: 30px;
 `;
 
-export const Form = styled.form`
-  width: 420px;
-  display: flex;
-  gap: 25px;
-  flex-direction: column;
+export const Container = styled.div`
   padding: 30px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
 
   border: 1px solid #62ada0;
   border-radius: 6px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 `;
 
+export const Form = styled.form`
+  width: 400px;
+  display: flex;
+  gap: 25px;
+  flex-direction: column;
+`;
+
 export const FormInput = styled.input`
-  width: 300px;
+  width: 280px;
   font-size: 14px;
   padding: 4px;
 `;
@@ -44,7 +44,11 @@ export const FormLabel = styled.label`
 export const FormBtn = styled.button`
   cursor: pointer;
 
-  display: block;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  
   margin: 0 auto;
   margin-top: 6px;
 

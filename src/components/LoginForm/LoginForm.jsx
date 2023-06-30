@@ -1,8 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/authOperations';
+import { Link } from 'react-router-dom';
+import { MdOutlineLogin } from 'react-icons/md';
 import {
-  Container,
   Tytle,
+  Container,
   Form,
   FormLabel,
   FormInput,
@@ -25,23 +27,32 @@ const LoginForm = () => {
   };
 
   return (
-    <Container>
+    <>
       <Tytle>Log In</Tytle>
 
-      <Form onSubmit={handleSubmit} autoComplete="off">
-        <FormLabel>
-          E-mail:
-          <FormInput type="email" name="email" />
-        </FormLabel>
+      <Container>
+        <Form onSubmit={handleSubmit} autoComplete="off">
+          <FormLabel>
+            E-mail:
+            <FormInput type="email" name="email" />
+          </FormLabel>
 
-        <FormLabel>
-          Password:
-          <FormInput type="password" name="password" />
-        </FormLabel>
+          <FormLabel>
+            Password:
+            <FormInput type="password" name="password" />
+          </FormLabel>
 
-        <FormBtn type="submit">Log In</FormBtn>
-      </Form>
-    </Container>
+          <FormBtn type="submit">
+            <MdOutlineLogin />
+            Log In
+          </FormBtn>
+        </Form>
+
+        <p>
+          <Link to="/register">Register</Link> if you don't have an account yet.
+        </p>
+      </Container>
+    </>
   );
 };
 
