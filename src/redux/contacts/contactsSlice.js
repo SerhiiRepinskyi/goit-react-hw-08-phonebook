@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts, addContact, deleteContact } from './contactsOperations';
+import {
+  fetchContacts,
+  addContact,
+  deleteContact,
+  updateContact,
+} from './contactsOperations';
 
 const contactsInitialState = {
   items: [],
@@ -9,6 +14,7 @@ const contactsInitialState = {
 
 const handlePending = state => {
   state.isLoading = true;
+  state.error = null;
 };
 
 const handleRejected = (state, action) => {
@@ -24,8 +30,8 @@ const contactsSlice = createSlice({
   // Об'єкт внутрішніх редюсерів - відсутні
   // reducers: { ...},
   // Зовнішні редюсери з білдером
-  extraReducers: bilder => {
-    bilder
+  extraReducers: builder => {
+    builder
       .addCase(fetchContacts.pending, handlePending)
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -51,7 +57,19 @@ const contactsSlice = createSlice({
         );
         state.items.splice(index, 1);
       })
-      .addCase(deleteContact.rejected, handleRejected);
+      .addCase(deleteContact.rejected, handleRejected)
+
+      .addCase(updateContact.pending, handlePending)
+      .addCase(updateContact.fulfilled, (state, action) => {
+        const index = state.items.findIndex(
+          task => task.id === action.payload.id
+        );
+        state.items.splice(index, 1);
+        state.items.unshift(action.payload);
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(updateContact.rejected, handleRejected);
   },
 });
 

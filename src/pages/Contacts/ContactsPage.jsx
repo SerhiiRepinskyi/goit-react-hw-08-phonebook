@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchContacts } from '../../redux/contacts/contactsOperations';
-import { selectItems, selectIsLoading, selectError } from '../../redux/contacts/selectors';
+import {
+  selectItems,
+  selectIsLoading,
+  selectError,
+} from '../../redux/contacts/selectors';
 import ContactForm from '../../components/ContactForm';
 import ContactList from '../../components/ContactList';
 import Filter from '../../components/Filter';
@@ -37,9 +41,6 @@ const ContactsPage = () => {
         <ContactsNum>{contacts.length}</ContactsNum>
       </AmountContacts>
 
-      {isLoading && !error && <b>Request in progress...</b>}
-      {error && error}
-
       {contacts.length > 0 ? (
         <>
           <Filter />
@@ -48,6 +49,9 @@ const ContactsPage = () => {
       ) : (
         <Message>Contact list is empty</Message>
       )}
+
+      {isLoading && !error && <b>Request in progress...</b>}
+      {error && error}
 
       <ToastContainer autoClose={2000} position="top-center" theme="colored" />
     </Container>
